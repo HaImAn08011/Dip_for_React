@@ -1,0 +1,23 @@
+<h2>Админ-панель</h2>
+<div style="background:#f8f9fa; padding:1rem; margin-bottom:1rem;">
+    <h3>Добавить книгу</h3>
+    <form method="POST">
+        <input type="text" name="title" placeholder="Название" required>
+        <input type="text" name="author" placeholder="Автор" required>
+        <input type="number" step="0.01" name="price" placeholder="Цена" required>
+        <input type="text" name="img" placeholder="URL картинки">
+        <button type="submit" class="btn">Добавить</button>
+    </form>
+</div>
+<table style="width:100%; border-collapse:collapse;">
+    <thead><tr style="background:#2c2b28; color:white;"><th>Название</th><th>Цена</th><th>Действие</th></tr></thead>
+    <tbody>
+        <% books.forEach(book => { %>
+            <tr><td><%= book.title %></td><td><%= book.price %> ₽</td><td><a href="/admin/delete/<%= book.id %>" class="btn secondary" style="background:#dc3545; color:white;">Удалить</a></td></tr>
+        <% }); %>
+    </tbody>
+</table>
+<div style="margin-top:1rem;">
+    <a href="/admin/reservations" class="btn">Управление бронями</a>
+    <a href="/admin/pickup" class="btn secondary">Выдача по коду</a>
+</div>

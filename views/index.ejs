@@ -1,0 +1,31 @@
+<h2>Каталог книг</h2>
+<form method="GET" style="margin-bottom:1rem;">
+    <label>Сортировать:</label>
+    <select name="sort" onchange="this.form.submit()">
+        <option value="default">По умолчанию</option>
+        <option value="price_asc">Цена ▲</option>
+        <option value="price_desc">Цена ▼</option>
+        <option value="title_asc">Название А-Я</option>
+    </select>
+    <input type="hidden" name="search" value="<%= search %>">
+</form>
+<div class="books">
+    <% books.forEach(book => { %>
+        <div class="book">
+            <div class="img">📖</div>
+            <h3><%= book.title %></h3>
+            <p><%= book.author %></p>
+            <p class="price"><%= book.price %> ₽</p>
+            <a href="/add_to_cart/<%= book.id %>" class="btn">В корзину</a>
+            <% if (user) { %>
+                <% if (!book.is_reserved) { %>
+                    <a href="/reserve/<%= book.id %>" class="btn secondary">Забронировать</a>
+                <% } else { %>
+                    <span class="btn disabled">Забронирована</span>
+                <% } %>
+            <% } else { %>
+                <a href="/login" class="btn secondary">Войдите</a>
+            <% } %>
+        </div>
+    <% }); %>
+</div>

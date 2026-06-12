@@ -1,0 +1,16 @@
+<h2>Мои бронирования</h2>
+<% if (reservations.length) { %>
+    <div class="books">
+        <% reservations.forEach(r => { %>
+            <div class="book">
+                <h3><%= r.book_title %></h3>
+                <p><%= r.book_author %></p>
+                <p class="price"><%= r.book_price %> ₽</p>
+                <p><strong>Код:</strong> <%= r.pickup_code %></p>
+                <a href="/cancel-reservation/<%= r.id %>" class="btn secondary">Отменить бронь</a>
+            </div>
+        <% }); %>
+    </div>
+<% } else { %>
+    <p>Нет активных броней.</p>
+<% } %>

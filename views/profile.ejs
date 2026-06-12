@@ -1,0 +1,17 @@
+<h2>Личный кабинет: <%= user.username %></h2>
+<h3>История заказов</h3>
+<% if (history.length) { %>
+    <% history.forEach(order => { %>
+        <div style="border:1px solid #ddd; padding:1rem; margin-bottom:1rem;">
+            <div><strong>Заказ №<%= order.info.id %></strong> от <%= order.info.date %></div>
+            <ul>
+                <% order.items.forEach(item => { %>
+                    <li><%= item.book_title %> — <%= item.price %> ₽</li>
+                <% }); %>
+            </ul>
+            <div><strong>Итого: <%= order.info.total %> ₽</strong></div>
+        </div>
+    <% }); %>
+<% } else { %>
+    <p>Вы еще не совершали покупок.</p>
+<% } %>

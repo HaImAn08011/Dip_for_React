@@ -1,0 +1,15 @@
+<h2>Управление бронями</h2>
+<a href="/admin" class="btn secondary" style="margin-bottom:1rem;">← Назад</a>
+<table style="width:100%; border-collapse:collapse;">
+    <thead><tr style="background:#2c2b28; color:white;"><th>ID</th><th>Пользователь</th><th>Книга</th><th>Автор</th><th>Цена</th><th>Код</th><th>Статус</th><th>Дата</th><th>Действие</th></tr></thead>
+    <tbody>
+        <% reservations.forEach(r => { %>
+            <tr>
+                <td><%= r.id %></td><td><%= r.username %></td><td><%= r.book_title %></td><td><%= r.book_author %></td><td><%= r.book_price %> ₽</td>
+                <td><%= r.pickup_code %></td><td><%= r.status === 'active' ? 'Активна' : (r.status === 'completed' ? 'Выдана' : r.status) %></td>
+                <td><%= r.created_at %></td>
+                <td><a href="/admin/reservations/delete/<%= r.id %>" class="btn secondary" style="background:#dc3545; color:white;">Удалить</a></td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
